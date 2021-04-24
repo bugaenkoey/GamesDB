@@ -15,6 +15,7 @@ namespace GamesDB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Style = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateRelease = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

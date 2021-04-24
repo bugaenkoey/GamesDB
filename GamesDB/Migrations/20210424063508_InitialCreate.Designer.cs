@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamesDB.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20210421200807_InitialCreate")]
+    [Migration("20210424063508_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace GamesDB.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Style")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
