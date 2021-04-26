@@ -1,67 +1,44 @@
-﻿
-using GamesDB.BusinessLogicLayer;
+﻿using GamesDB.BusinessLogicLayer;
 using GamesDB.DataAccessLayer;
 using System;
-using System.Reflection;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GamesForms
 {
     public partial class Form1 : Form
     {
-        //  public IRequestesInDB requestes;
-        public RequestesInDB[] requestes;
-        // public IGamesServise  gamesServise;
+        public string[] select;
         public IGamesServise gServis;
         public Form1()
         {
             InitializeComponent();
-            //  var requestes = GetRequestes();
-            //  gamesServise = new GamesServise();
-             gServis = new GamesServise(new GamesContext());
-            requestes = GetRequestes1();
-
-
-            foreach (var item in requestes)
-            {
-                RequestesComboBox.Items.Add(item.Text);
-            };
+            gServis = new GamesServise(new GamesContext());
+            SetSelect();
         }
 
-        public RequestesInDB[] GetRequestes1()
+        private void SetSelect()
         {
-            
-
-            requestes = new RequestesInDB[]
+            select = new string[]
             {
-              new RequestesInDB{Text = " Информации о всех играх " ,funcAll = gServis.All },//GServise = gServis},
-              new RequestesInDB{Text = " Информации о играх позже определенной даты ", funcAfterDate = gServis.AfterDate },//(IGamesServise)gServis.AfterDate(new DateTime( 1993))},
-              new RequestesInDB{Text = " Информации об ихрах определенного стиля " ,funcStyle = gServis.Style },//(IGamesServise)gServis.Style("пошаговая стратегия")},
-              new RequestesInDB{Text = " Информации об ихрах определенной студии (компании)", funcCompany = gServis.Company } //(IGamesServise)gServis.Company("id Software")}
+                new string(" Информации о всех играх "),
+                new string(" Информации о играх позже определенной даты "),
+                new string(" Информации об ихрах определенного стиля "),
+                new string(" Информации об ихрах определенной студии (компании)")
             };
-
-            return requestes;
+            foreach (var item in select)
+            {
+                RequestesComboBox.Items.Add(item);
+            }
+           
         }
-/*
-        private IEnumerable<object> GetRequestes()
-        {
-            return new string[]{ " Информации о всех играх " ,
-                    " Информации о играх позже определенной даты " ,
-                    " Информации об ихрах определенного стиля " ,
-                    " Информации об ихрах определенной студии "};
 
-
-        }*/
 
         private void RequestesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-          var index = RequestesComboBox.SelectedIndex;
+            var index = RequestesComboBox.SelectedIndex;
 
-
-            switch (requestes[index].Text)
+           switch(select[index])
             {
                 case " Информации о всех играх ":
                     GamesDataGridView.DataSource = gServis.All();
