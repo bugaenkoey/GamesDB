@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace GamesDB.DataAccessLayer.Entities
 {
@@ -26,8 +28,8 @@ namespace GamesDB.DataAccessLayer.Entities
 
         //------------
 
- //       public bool multiplayer { get; set; }
- //       public int CopiesSold { get; set; }
+        public bool Multiplayer { get; set; }
+        public int CopiesSold { get; set; }
 
     }
 }
